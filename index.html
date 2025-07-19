@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nithin | Creative Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #ff2d75;
+            --secondary: #ff5e78;
+            --dark: #0f0e17;
+            --light: #fffffe;
+            --accent: #00ebc7;
+            --text: #a7a9be;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        .title-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #6c63ff, #ff6b6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(108, 99, 255, 0.2), 0 10px 10px -5px rgba(108, 99, 255, 0.1);
+        }
+        
+        .glow {
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+            }
+            to {
+                box-shadow: 0 0 20px rgba(108, 99, 255, 0.8);
+            }
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .bg-pattern {
+            background-image: radial-gradient(circle at 25% 25%, rgba(108, 99, 255, 0.1) 0%, transparent 50%);
+        }
+        
+        .skill-pill {
+            transition: all 0.3s ease;
+        }
+        
+        .skill-pill:hover {
+            transform: scale(1.05);
+            background-color: var(--primary);
+        }
+        
+        .section-divider {
+            height: 100px;
+            width: 100%;
+            background: linear-gradient(to bottom, rgba(26, 26, 46, 0), var(--dark));
+        }
+
+        /* Anime-style background elements */
+        .anime-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 45, 117, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(0, 235, 199, 0.15) 0%, transparent 25%),
+                linear-gradient(to bottom, rgba(15, 14, 23, 0.9), rgba(15, 14, 23, 1));
+            opacity: 1;
+        }
+
+        /* Anime-style hover effects */
+        .anime-hover {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .anime-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+            animation: surprise 0.5s ease;
+        }
+
+        .anime-hover::after {
+            content: 'NANI?!';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: bold;
+            font-size: 2rem;
+            color: var(--primary);
+            opacity: 0;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .anime-hover:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 0.8;
+            animation: surprise 0.5s ease;
+        }
+
+        .anime-hover:hover::after {
+            left: 100%;
+        }
+
+        /* Anime-style button effects */
+        .anime-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .anime-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(108, 99, 255, 0.3);
+        }
+
+        .anime-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .anime-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Special anime-style gradient for headings */
+        .anime-heading {
+            background: linear-gradient(90deg, 
+                var(--primary) 0%, 
+                var(--secondary) 50%, 
+                var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Anime-style floating effect */
+        @keyframes animeFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(-2deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(2deg);
+            }
+        }
+
+        @keyframes surprise {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2) rotate(5deg); }
+            100% { transform: scale(1); }
+        }
+
+        .anime-float {
+            animation: animeFloat 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-dark">
+    <!-- Anime Background Elements -->
+    <div class="anime-bg"></div>
+    <div class="fixed top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+        <div class="absolute top-20 left-10 w-40 h-40 rounded-full bg-pink-900 opacity-10 blur-3xl anime-float"></div>
+        <div class="absolute bottom-20 right-10 w-60 h-60 rounded-full bg-teal-900 opacity-10 blur-3xl anime-float" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-cyan-900 opacity-10 blur-3xl anime-float" style="animation-delay: 4s;"></div>
+        <canvas id="particles" class="absolute inset-0 w-full h-full"></canvas>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-dark bg-opacity-80 backdrop-filter backdrop-blur-md border-b border-gray-800">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold title-font anime-heading relative group">
+                    Nithin
+                    <span class="absolute -bottom-1 left-0 w-0 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-white transition duration-300 relative group">
+                        Home
+                        <span class="absolute left-0 -bottom-1 w-0 h-1 bg-purple-500 transition-all duration-500 group-hover:w-full"></span>
+                        <span class="absolute -left-2 -top-2 text-xs text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">★</span>
+                        <span class="absolute -right-2 -bottom-2 text-xs text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">★</span>
+                    </a>
+                    <a href="#about" class="text-gray-300 hover:text-white transition duration-300 relative group">
+                        About
+                        <span class="absolute left-0 -bottom-1 w-0 h-1 bg-blue-500 transition-all duration-500 group-hover:w-full"></span>
+                        <span class="absolute -left-2 -top-2 text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">✧</span>
+                        <span class="absolute -right-2 -bottom-2 text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">✧</span>
+                    </a>
+                    <a href="#skills" class="text-gray-300 hover:text-white transition duration-300 relative group">
+                        Skills
+                        <span class="absolute left-0 -bottom-1 w-0 h-1 bg-pink-500 transition-all duration-500 group-hover:w-full"></span>
+                        <span class="absolute -left-2 -top-2 text-xs text-pink-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                        <span class="absolute -right-2 -bottom-2 text-xs text-pink-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">✦</span>
+                    </a>
+                    <a href="#projects" class="text-gray-300 hover:text-white transition duration-300 relative group">
+                        Projects
+                        <span class="absolute left-0 -bottom-1 w-0 h-1 bg-teal-500 transition-all duration-500 group-hover:w-full"></span>
+                        <span class="absolute -left-2 -top-2 text-xs text-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">❖</span>
+                        <span class="absolute -right-2 -bottom-2 text-xs text-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">❖</span>
+                    </a>
+                </div>
+                <button class="md:hidden focus:outline-none" id="menu-toggle">
+                    <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="md:hidden hidden mt-4" id="mobile-menu">
+                <div class="flex flex-col space-y-3">
+                    <a href="#home" class="text-gray-300 hover:text-white transition duration-300">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-white transition duration-300">About</a>
+                    <a href="#skills" class="text-gray-300 hover:text-white transition duration-300">Skills</a>
+                    <a href="#projects" class="text-gray-300 hover:text-white transition duration-300">Projects</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+        <div class="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 z-10">
+                <h1 class="text-4xl md:text-6xl font-bold title-font mb-4 anime-heading relative">
+                    Hi, I'm <span class="anime-heading" style="display: inline-block;">Nithin</span>
+                    <span class="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></span>
+                </h1>
+                <h2 class="text-2xl md:text-3xl text-gray-300 mb-6">
+                    <span class="typing-text"></span>
+                </h2>
+                <p class="text-gray-400 mb-8 max-w-lg">
+                    A passionate creator crafting digital experiences that blend aesthetics with functionality. I transform ideas into reality through code and design.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#projects" class="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-500 rounded-full text-white font-medium anime-btn glow relative overflow-hidden group">
+                        View My Work
+                        <span class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
+                        <span class="absolute -inset-1 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full blur-md opacity-0 group-hover:opacity-70 transition-opacity duration-500"></span>
+                        <span class="absolute top-0 left-0 w-2 h-full bg-white opacity-0 group-hover:opacity-30 group-hover:w-full transition-all duration-700"></span>
+                    </a>
+                    <a href="#contact" class="px-6 py-3 border border-purple-500 rounded-full text-purple-300 font-medium hover:bg-purple-900 hover:bg-opacity-30 transition duration-300 relative group">
+                        Contact Me
+                        <span class="absolute inset-0 rounded-full border-2 border-transparent group-hover:border-purple-400 transition-all duration-300"></span>
+                        <span class="absolute -inset-1 rounded-full bg-purple-500 blur-md opacity-0 group-hover:opacity-20 transition-opacity duration-500"></span>
+                        <span class="absolute top-1/2 left-1/2 w-0 h-0 bg-purple-400 rounded-full group-hover:w-32 group-hover:h-32 -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-10 transition-all duration-700"></span>
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 mt-12 md:mt-0 z-10 flex justify-center">
+                <div class="relative w-64 h-64 md:w-80 md:h-80">
+                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600 to-blue-500 blur-xl opacity-30"></div>
+                    <div class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-600 to-blue-500 blur-md opacity-20"></div>
+                    <div class="relative w-full h-full rounded-full overflow-hidden border-4 border-purple-500 glow floating hover:border-pink-500 transition-all duration-500 group">
+                        <div class="absolute inset-0 rounded-full border-4 border-transparent group-hover:border-white group-hover:opacity-70 transition-all duration-700"></div>
+                        <div class="absolute inset-0 rounded-full bg-gradient-to-br from-purple-500/30 to-pink-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                            <div class="absolute w-32 h-32 rounded-full bg-white blur-xl opacity-20 animate-ping"></div>
+                            <span class="text-white font-bold text-xl relative z-10 rotate-0 group-hover:rotate-12 transition-transform duration-500">BANKAI!</span>
+                        </div>
+                        <img src="https://images3.alphacoders.com/131/1310203.png" alt="Nithin as Aizen" class="w-full h-full object-cover transition-all duration-500 hover:scale-110">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-gray-400 hover:text-white transition duration-300">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-pattern relative">
+        <div class="section-divider"></div>
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold title-font mb-4">
+                    <span class="gradient-text">About Me</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-purple-600 to-blue-500 mx-auto mb-6"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Get to know the person behind the code
+                </p>
+            </div>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-10 md:mb-0 flex justify-center">
+                    <div class="relative w-64 h-64 rounded-2xl overflow-hidden border-4 border-purple-500 transform rotate-3 hover:rotate-0 transition duration-500 card-hover">
+                        <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2025/02/bleach-aizen-muken.jpg" alt="Nithin as Aizen" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="md:w-2/3 md:pl-12">
+                    <h3 class="text-2xl font-bold mb-6">Who am I?</h3>
+                    <p class="text-gray-400 mb-6">
+                        I'm Nithin Spacetime, a creative developer (ig) with a passion for building beautiful (Visually pleasing) , OfCourse functional digital Stuff. , I like to do things that are pain in ass Obviously aesthetics yeah 
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-gray-800 bg-opacity-50 p-6 rounded-xl border border-gray-700 card-hover">
+                            <div class="text-purple-400 mb-3">
+                                <i class="fas fa-lightbulb text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">Creative ?</h4>
+                            <p class="text-gray-400 text-sm">
+                                I approach every project with fresh eyes As i wash my face and innovative ideas While iam eating stuff ahhh nevermind ...
+                            </p>
+                        </div>
+                        <div class="bg-gray-800 bg-opacity-50 p-6 rounded-xl border border-gray-700 card-hover">
+                            <div class="text-blue-400 mb-3">
+                                <i class="fas fa-code text-2xl"></i>
+                            </div>
+                            <h4 class="font-bold mb-2">Technical Boring Stuff</h4>
+                            <p class="text-gray-400 text-sm">
+                                Why do i even Code ? Ahh it is pain in Ass Fr
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-purple-500 mr-2"></div>
+                            <span class="text-gray-300">From India</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>
+                            <span class="text-gray-300">Available for freelance (Although iam lazy as Fuck)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 rounded-full bg-pink-500 mr-2"></div>
+                            <span class="text-gray-300">Open to collaborations (Nevermind i like to do my stuff alone)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 relative">
+        <div class="section-divider"></div>
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold title-font mb-4">
+                    <span class="gradient-text">My Skills</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-purple-600 to-blue-500 mx-auto mb-6"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    The tools and technologies I use 
+                </p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-gray-800 bg-opacity-50 p-8 rounded-xl border border-gray-700 text-center card-hover">
+                    <div class="text-5xl text-purple-400 mb-4">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Frontend</h3>
+                    <div class="flex flex-wrap justify-center gap-2 mt-4">
+                        <span class="skill-pill px-3 py-1 bg-gray-700 rounded-full text-sm relative overflow-hidden group">
+                            <span class="relative z-10">HTML5</span>
+                            <span class="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                            <span class="absolute -inset-1 rounded-full bg-white blur-sm opacity-0 group-hover:opacity-30 transition-opacity duration-500"></span>
+                            <span class="absolute top-0 left-0 w-1 h-full bg-white opacity-0 group-hover:opacity-50 group-hover:w-full transition-all duration-700"></span>
+                        </span>
+                        <span class="skill-pill px-3 py-1 bg-gray-700 rounded-full text-sm">CSS3</span>
+                        <span class="skill-pill px-3 py-1 bg-gray-700 rounded-full text-sm">JavaScript</span>
+                        <span class="skill-pill px-3 py-1 bg-gray-700 rounded-full text-sm">React</span>
+                        <span class="skill-pill px-3 py-1 bg-gray-700 rounded-full text-sm">Tailwind</span>
+                    </div>
+                </div>
+                <div class="bg-gray-800 bg-opacity-50 p-8 rounded-xl border border-gray-700 text-center card-hover">
+                    <div class="text-5xl text-blue-400 mb-4">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Backend</h3>
+                    <div class="flex flex-wrap justify-center gap-2 mt-4">
+                        <span class="skill-pill px-3 py-1 bg-gray-700 rounded-full text-sm">Node.js</span>
+                        <span class="skill-pill px-3 py-1 bg-gray-700 rounded-full text-sm">Express</span>
+                        <span class="skill-pill px-3 py-1 bg-gray-700 rounded-full text-sm">MongoDB</span>
+                        <span class="skill-pill px-3 py-1 bg-gray-700 rounded-full text-sm">Firebase</span>
+                    </div>
+                </div>
+                <div class="bg-gray-800 bg-opacity-50 p-8 rounded-xl border border-gray-700 text-center card-hover">
+                    <div class="text-5xl text-pink-400 mb-4">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Design</h3>
+                    <div class="flex flex-wrap justify-center gap-2 mt-4">
+                        <span class="skill-pill px-3 py-1 bg-gray-700 rounded-full text-sm">Figma</span>
+                        <span class="skill-pill px-3 py-1 bg-gray-700 rounded-full text-sm">Adobe XD</span>
+                        <span class="skill-pill px-3 py-1 bg-gray-700 rounded-full text-sm">UI/UX</span>
+                        <span class="skill-pill px-3 py-1 bg-gray-700 rounded-full text-sm">Prototyping</span>
+                    </div>
+                </div>
+                <div class="bg-gray-800 bg-opacity-50 p-8 rounded-xl border border-gray-700 text-center card-hover">
+                    <div class="text-5xl text-yellow-400 mb-4">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Other</h3>
+                    <div class="flex flex-wrap justify-center gap-2 mt-4">
+                        <span class="skill-pill px-3 py-1 bg-gray-700 rounded-full text-sm">Git</span>
+                        <span class="skill-pill px-3 py-1 bg-gray-700 rounded-full text-sm">Docker</span>
+                        <span class="skill-pill px-3 py-1 bg-gray-700 rounded-full text-sm">AWS</span>
+                        <span class="skill-pill px-3 py-1 bg-gray-700 rounded-full text-sm">CI/CD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-pattern relative">
+        <div class="section-divider"></div>
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold title-font mb-4">
+                    <span class="gradient-text">Featured Projects (Under Construction)</span>
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-purple-600 to-blue-500 mx-auto mb-6"></div>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    A selection of my recent work that I'm particularly not proud of
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-gray-800 bg-opacity-50 rounded-xl overflow-hidden border border-gray-700 anime-hover relative group">
+                    <div class="absolute -inset-1 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-20 blur-md transition-opacity duration-500"></div>
+                    <div class="absolute top-4 right-4 text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <i class="fas fa-bolt text-xl animate-pulse"></i>
+                    </div>
+                    <div class="absolute bottom-4 left-4 text-pink-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <i class="fas fa-sparkles text-xl animate-spin"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                    <div class="h-48 bg-gradient-to-r from-purple-600 to-blue-500 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                            <i class="fas fa-eye text-white text-4xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">E-Commerce Platform</h3>
+                        <p class="text-gray-400 mb-4">
+                            A full-featured online store with payment integration and admin dashboard.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-gray-700 rounded text-xs">React</span>
+                            <span class="px-2 py-1 bg-gray-700 rounded text-xs">Node.js</span>
+                            <span class="px-2 py-1 bg-gray-700 rounded text-xs">MongoDB</span>
+                        </div>
+                        <a href="https://youtu.be/xnJLLojvsys?si=otCk6efastRH4cBg" target="_blank" class="text-purple-400 hover:text-purple-300 transition duration-300 text-sm font-medium flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="bg-gray-800 bg-opacity-50 rounded-xl overflow-hidden border border-gray-700 card-hover">
+                    <div class="h-48 bg-gradient-to-r from-pink-500 to-red-500 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                            <i class="fas fa-eye text-white text-4xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Task Management App</h3>
+                        <p class="text-gray-400 mb-4">
+                            A productivity app with drag-and-drop interface and real-time collaboration.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-gray-700 rounded text-xs">Vue.js</span>
+                            <span class="px-2 py-1 bg-gray-700 rounded text-xs">Firebase</span>
+                            <span class="px-2 py-1 bg-gray-700 rounded text-xs">Tailwind</span>
+                        </div>
+                        <a href="https://youtube.com/shorts/gZFaGsO_vUY?si=azJJ7go0NSMP4K2f" target="_blank" class="text-purple-400 hover:text-purple-300 transition duration-300 text-sm font-medium flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="bg-gray-800 bg-opacity-50 rounded-xl overflow-hidden border border-gray-700 card-hover">
+                    <div class="h-48 bg-gradient-to-r from-blue-500 to-teal-400 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                            <i class="fas fa-eye text-white text-4xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-2">Portfolio Website</h3>
+                        <p class="text-gray-400 mb-4">
+                            A custom portfolio website with interactive elements and smooth animations.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-gray-700 rounded text-xs">HTML/CSS</span>
+                            <span class="px-2 py-1 bg-gray-700 rounded text-xs">JavaScript</span>
+                            <span class="px-2 py-1 bg-gray-700 rounded text-xs">GSAP</span>
+                        </div>
+                        <a href="https://youtube.com/shorts/gZFaGsO_vUY?si=azJJ7go0NSMP4K2f" target="_blank" class="text-purple-400 hover:text-purple-300 transition duration-300 text-sm font-medium flex items-center">
+                            View Project <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="https://youtube.com/shorts/gZFaGsO_vUY?si=azJJ7go0NSMP4K2f" target="_blank" class="inline-block px-6 py-3 border border-purple-500 rounded-full text-purple-300 font-medium hover:bg-purple-900 hover:bg-opacity-30 transition duration-300">
+                    View All Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-gray-900 bg-opacity-50 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-2xl font-bold title-font gradient-text">Nithin</a>
+                    <p class="text-gray-400 mt-2">Crafting digital experiences with passion</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                    &copy; 2023 Nithin. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-gray-300 transition duration-300 text-sm relative group">
+                        Privacy Policy
+                        <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
+                        <span class="absolute -bottom-2 left-1/2 text-xs text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-x-1/2">⚠️</span>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-gray-300 transition duration-300 text-sm relative group">
+                        Terms of Service
+                        <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover:w-full"></span>
+                        <span class="absolute -bottom-2 left-1/2 text-xs text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-x-1/2">📜</span>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-gray-300 transition duration-300 text-sm relative group">
+                        Cookies
+                        <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-pink-500 transition-all duration-300 group-hover:w-full"></span>
+                        <span class="absolute -bottom-2 left-1/2 text-xs text-pink-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-x-1/2">🍪</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Particle System
+        const initParticles = () => {
+            const canvas = document.getElementById('particles');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const particles = [];
+            const colors = ['#ff2d75', '#00ebc7', '#6c63ff', '#ff5e78'];
+            const particleCount = 100;
+            
+            // Create particles
+            for (let i = 0; i < particleCount; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 3 + 1,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speedX: Math.random() * 2 - 1,
+                    speedY: Math.random() * 2 - 1,
+                    opacity: Math.random() * 0.5 + 0.1
+                });
+            }
+            
+            // Animation loop
+            const animateParticles = () => {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                particles.forEach(particle => {
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    ctx.fillStyle = particle.color;
+                    ctx.globalAlpha = particle.opacity;
+                    ctx.fill();
+                    
+                    // Move particles
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+                    
+                    // Bounce off edges
+                    if (particle.x < 0 || particle.x > canvas.width) particle.speedX *= -1;
+                    if (particle.y < 0 || particle.y > canvas.height) particle.speedY *= -1;
+                });
+                
+                requestAnimationFrame(animateParticles);
+            };
+            
+            animateParticles();
+            
+            // Handle resize
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        };
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initParticles();
+            
+            // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Typing animation with enhanced effects
+        const typingText = document.querySelector('.typing-text');
+        const words = ["Developer", "Designer", "Creator", "Problem Solver"];
+        typingText.classList.add('animate-text');
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let isEnd = false;
+
+        function type() {
+            const currentWord = words[wordIndex];
+            const currentChar = currentWord.substring(0, charIndex);
+            typingText.textContent = currentChar;
+            
+            if (!isDeleting && charIndex < currentWord.length) {
+                // Typing
+                charIndex++;
+                setTimeout(type, 100);
+            } else if (isDeleting && charIndex > 0) {
+                // Deleting
+                charIndex--;
+                setTimeout(type, 50);
+            } else {
+                // Change word
+                isDeleting = !isDeleting;
+                if (!isDeleting) {
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+                setTimeout(type, 1000);
+            }
+        }
+
+        // Start typing animation
+        setTimeout(type, 1000);
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+        // Add scroll animation to elements
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.card-hover, .skill-pill');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // Set initial state for animated elements
+        document.querySelectorAll('.card-hover, .skill-pill').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.5s ease';
+        });
+
+        // Run animation on scroll
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+<p style="border-radius: 8px; text-align: center; font-size: 12px; color: #fff; margin-top: 16px;position: fixed; left: 8px; bottom: 8px; z-index: 10; background: rgba(0, 0, 0, 0.8); padding: 4px 8px;">Made with <img src="https://enzostvs-deepsite.hf.space/logo.svg" alt="DeepSite Logo" style="width: 16px; height: 16px; vertical-align: middle;display:inline-block;margin-right:3px;filter:brightness(0) invert(1);"><a href="https://enzostvs-deepsite.hf.space" style="color: #fff;text-decoration: underline;" target="_blank" >DeepSite</a> - 🧬 <a href="https://enzostvs-deepsite.hf.space?remix=NITHINSS383/portfolio" style="color: #fff;text-decoration: underline;" target="_blank" >Remix</a></p></body>
+</html>
